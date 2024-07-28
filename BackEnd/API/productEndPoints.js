@@ -1,9 +1,9 @@
-const categoryDB = require('./../databaseConnection/categoryDB');
+const productDB = require('./../databaseConnection/productDB');
 const express = require('express');
 const app = express();
 
 app.get('/', (request, response) => {
-  categoryDB.getAllCategories((err, results) => {
+  productDB.getAllProducts((err, results) => {
     if (err) {
       console.error(`Error al ejecutar la consulta ${err}`);
       response.status(500).send('Error en el servidor');
@@ -13,7 +13,7 @@ app.get('/', (request, response) => {
 
 app.get('/:id', (request, response) => {
   const { id } = request.params;
-  categoryDB.getCategory(id, (err, results) => {
+  productDB.getProduct(id, (err, results) => {
     if (err) {
       console.error(`Error al ejecutar la consulta ${err}`);
       response.status(500).send('Error en el servidor');
@@ -22,8 +22,8 @@ app.get('/:id', (request, response) => {
 });
 
 app.post('/', (request, response) => {
-  const { description } = request.body;
-  categoryDB.addCategory(description, (err, results) => {
+  const { barcode, fkCategoryID, productName, stock, price } = request.body;
+  productDB.addProduct(barcode, fkCategoryID, productName, stock, price, (err, results) => {
     if (err) {
       console.error(`Error al ejecutar la consulta ${err}`);
       response.status(500).send('Error en el servidor');
@@ -33,8 +33,8 @@ app.post('/', (request, response) => {
 
 app.put('/:id', (request, response) => {
   const { id } = request.params;
-  const { description } = request.body;
-  categoryDB.editCategory(id, description, (err, results) => {
+  const { barcode, fkCategoryID, productName, stock, price } = request.body;
+  productDB.editProduct(id, barcode, fkCategoryID, productName, stock, price, (err, results) => {
     if (err) {
       console.error(`Error al ejecutar la consulta ${err}`);
       response.status(500).send('Error en el servidor');
@@ -44,7 +44,7 @@ app.put('/:id', (request, response) => {
 
 app.delete('/:id', (request, response) => {
   const { id } = request.params;
-  categoryDB.deleteCategory(id, (err, results) => {
+  productDB.deleteProduct(id, (err, results) => {
     if (err) {
       console.error(`Error al ejecutar la consulta ${err}`);
       response.status(500).send('Error en el servidor');

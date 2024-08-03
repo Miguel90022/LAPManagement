@@ -1,10 +1,10 @@
 const sqlServer = require('mssql');
 
 const connectionConfig = {
-  user: 'sa',
-  password: 'SqlServer123',
-  server: 'localhost',
-  database: 'LapManagement',
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  server: process.env.DATABASE_SERVER,
+  database: process.env.DATABASE,
   options: {
     encrypt: true,
     trustServerCertificate: true

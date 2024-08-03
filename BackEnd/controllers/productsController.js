@@ -1,4 +1,4 @@
-const productDB = require('../databaseConnection/productDB');
+const productDB = require('./../databaseConnectionSqlServer/productDB');
 
 class productsController {
 
@@ -22,8 +22,8 @@ class productsController {
       }
 
       static addProduct(request, response) {
-        const { barcode, fkCategoryID, productName, stock, price } = request.body;
-        productDB.addProduct(barcode, fkCategoryID, productName, stock, price, (err, results) => {
+        const { barcode, fkCategoryID, detail, stock, price } = request.body;
+        productDB.addProduct(barcode, fkCategoryID, detail, stock, price, (err, results) => {
           if (err) {
             console.error(`Error al ejecutar la consulta ${err}`);
             response.status(500).send('Error en el servidor');
@@ -33,8 +33,8 @@ class productsController {
 
       static editProduct(request, response) {
         const { id } = request.params;
-        const { barcode, fkCategoryID, productName, stock, price } = request.body;
-        productDB.editProduct(id, barcode, fkCategoryID, productName, stock, price, (err, results) => {
+        const { barcode, fkCategoryID, detail, stock, price } = request.body;
+        productDB.editProduct(id, barcode, fkCategoryID, detail, stock, price, (err, results) => {
           if (err) {
             console.error(`Error al ejecutar la consulta ${err}`);
             response.status(500).send('Error en el servidor');

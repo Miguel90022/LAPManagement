@@ -1,4 +1,4 @@
-const categoryDB = require("./../databaseConnection/categoryDB");
+const categoryDB = require('./../databaseConnectionSqlServer/categoryDB');
 
 class CategoriesController {
   static getAllCategories(request, response) {
@@ -21,8 +21,8 @@ class CategoriesController {
   }
 
   static addCategory(request, response) {
-    const { description } = request.body;
-    categoryDB.addCategory(description, (err, results) => {
+    const { detail } = request.body;
+    categoryDB.addCategory(detail, (err, results) => {
       if (err) {
         console.error(`Error al ejecutar la consulta ${err}`);
         response.status(500).send('Error en el servidor');
@@ -32,8 +32,8 @@ class CategoriesController {
 
   static editCategory(request, response) {
     const { id } = request.params;
-    const { description } = request.body;
-    categoryDB.editCategory(id, description, (err, results) => {
+    const { detail } = request.body;
+    categoryDB.editCategory(id, detail, (err, results) => {
       if (err) {
         console.error(`Error al ejecutar la consulta ${err}`);
         response.status(500).send('Error en el servidor');

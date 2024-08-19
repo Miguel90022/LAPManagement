@@ -1,9 +1,9 @@
 import './DropDownItem.css';
 
-export function DropDownItem ({ text, itemClass }) {
+export function DropDownItem ({ text, itemClass , action}) {
   return (
     <article className={itemClass}>
-      <span>{text}</span>
+      <button onClick={action}>{text}</button>
     </article>
   );
 }

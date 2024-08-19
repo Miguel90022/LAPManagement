@@ -22,6 +22,7 @@ class CategoriesController {
 
   static addCategory(request, response) {
     const { detail } = request.body;
+    console.log(request.body);
     categoryDB.addCategory(detail, (err, results) => {
       if (err) {
         console.error(`Error al ejecutar la consulta ${err}`);

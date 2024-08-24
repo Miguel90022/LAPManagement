@@ -6,120 +6,60 @@ import categoriesService from "./services/categoriesService";
 import { useState } from "react";
 import ProductsService from "./services/productsService";
 import CategoriesService from "./services/categoriesService";
+import { FormProduct } from "./FormProduct";
+import { FormCategory } from "./FormCategory";
 
 export function App() {
-  const data = [];
-  const [tableInfo, setTableInfo] = useState([]);
-  const [dropDownSelected, setdropDownSelected] = useState("Categorias");
 
-  const newProduct = {
-    barcode:"",
-    fkCategoryID:"",
-    detail:"",
-    stock:"",
-    price:""
-  }
+  const [SelectedDropDown, setSelectedDropDown] = useState('');
+  const [SelectedOption, setSelectedOption] = useState('');
 
-  const newCategory = {
-   detail: ""
-  }
 
-  const handleDropDownSelected =(value)=>{
-    setdropDownSelected(value)
-  
-  }
-
-  const getAllCategories = () => {
-    categoriesService.getCategories().then((categories) => {
-      categories.data.forEach((item, index) => {
-        data.push([]);
-        data[index].push(item.PKCategoryID);
-        data[index].push(item.Detail);
-      });
-      setTableInfo([Object.keys(categories.data[0]), data]);
-      //setCategories(categories.data);
-    });
+  const handleSelectedDropDown = (value) => {
+    setSelectedDropDown(value);
   };
 
-  const getAllProducts = () => {
-    ProductsService.getProducts().then((products) => {
-      products.data.forEach((item, index) => {
-        data.push([]);
-        data[index].push(item.PKProductID);
-        data[index].push(item.Barcode);
-        data[index].push(item.FKCategoryID);
-        data[index].push(item.Detail);
-        data[index].push(item.Stock);
-        data[index].push(item.Price);
-      });
-      setTableInfo([Object.keys(products.data[0]), data]);
-    });
-  };
-
-  const addCategory = () =>{
-     CategoriesService.addCategory(newCategory).then(()=>{
-      getAllCategories();
-     });
-  };
-
-  const addProduct = () =>{
-     ProductsService.addProduct(newProduct).then(()=>{
-      getAllProducts();
-     });
-  };
-
-  const deleteCategory = (id) =>{
-    CategoriesService.deleteCategory(id).then(()=>{
-      getAllCategories();
-    });
-  };
-
-  const deleteProduct = (id) =>{
-
-    ProductsService.deleteProduct(id).then(()=>{
-      getAllProducts();
-    });
-  };
-
-  const getDeleteAction = () =>{
-    if(dropDownSelected == "Categorias"){
-      return deleteCategory;
-    }
-    return deleteProduct;
+  const handleSelectedOption = (option) => {
+    setSelectedOption(option); 
   };
 
 
 
+ 
   return (
     <>
       <div className="appContainer">
         <div className="header"></div>
         <div className="mainContainer">
           <aside className="dropDownContainer">
-            <DropDown crudActions={[getAllCategories]} text={"Categorias"} setdropDownSelected={handleDropDownSelected}/>
-            <DropDown crudActions={[getAllProducts]} text={"Productos"} setdropDownSelected={handleDropDownSelected}/>
+            {/*crudActions={[getAllCategories]}*/}
+            <DropDown
+              text={"Categorias"}
+              handleSelectedDropDown={handleSelectedDropDown}
+              handleSelectedOption = {handleSelectedOption}
+
+            />
+                {/*crudActions={[getAllProducts]}*/}
+            <DropDown
+              text={"Productos"}
+              handleSelectedDropDown={handleSelectedDropDown}
+              handleSelectedOption = {handleSelectedOption}
+            />
           </aside>
-          <div className="tableContainer">
-            <Table tableInfo={tableInfo} deleteAction={getDeleteAction()}/>
+          <div className="dataContainer">
+            {SelectedOption == "Agregar" && SelectedDropDown == "Productos" && <FormProduct/>}
+            {SelectedOption == "Agregar" && SelectedDropDown == "Categorias" && <FormCategory/>}
+            {SelectedOption == "Listar / Eliminar / Editar" && SelectedDropDown == "Productos" && <Table SelectedDropDown={SelectedDropDown} />}
+            {SelectedOption == "Listar / Eliminar / Editar" && SelectedDropDown == "Categorias" && <Table SelectedDropDown={SelectedDropDown} />}
+
           </div>
         </div>
         <div className="footerContainer"></div>
       </div>
 
-   
-   <div>
-       <input type="text"  placeholder="nombre catgoria"  onChange={(e)=> newCategory.detail = e.target.value}/>
-       <button onClick={addCategory}>Agregar</button>
-   
-       </div>
-      <div>
-       <input type="text"  placeholder="Codigo de barras"  onChange={(e)=> newProduct.barcode = e.target.value }/>
-       <input type="text"  placeholder="Nombre producto"  onChange={(e)=> newProduct.detail = e.target.value }/>
-       <input type="text"  placeholder="Codigo categoria"  onChange={(e)=> newProduct.fkCategoryID = e.target.value}/>
-       <input type="text"  placeholder="Precio"  onChange={(e)=> newProduct.price = e.target.value}/>
-       <input type="text"  placeholder="Cantidad disponible"  onChange={(e)=> newProduct.stock = e.target.value}/>
-       <button  onClick={addProduct}>Agregar</button>
-       </div>
+      
+
+     
     </>
   );
 }

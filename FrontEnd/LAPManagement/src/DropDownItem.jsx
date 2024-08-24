@@ -1,9 +1,9 @@
 import './DropDownItem.css';
 
-export function DropDownItem ({ text, itemClass , action}) {
+export function DropDownItem ({ text, itemClass,  handleSelectedOption}) {
   return (
     <article className={itemClass}>
-      <button onClick={action}>{text}</button>
+      <button onClick={()=>{handleSelectedOption(text)}}>{text}</button>
     </article>
   );
 }

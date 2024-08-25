@@ -14,7 +14,7 @@ export function FormProduct() {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={(e) => e.preventDefault()} className="formContainer">
       <input
         type="text"
         placeholder="Codigo de barras"

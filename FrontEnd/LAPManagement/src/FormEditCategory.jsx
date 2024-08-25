@@ -13,7 +13,7 @@ export function FormEditCategory({ category }) {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={(e) => e.preventDefault()} className="formContainer">
       <label>Detail</label>
       <input
         type="text"

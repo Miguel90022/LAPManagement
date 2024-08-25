@@ -1,19 +1,69 @@
+.formContainer {
+  width: 60%;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formContainer label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.formContainer input[type='text'] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.formContainer button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.formContainer button:hover {
+  background-color: #45a049;
+}
+
+.formContainer button:disabled {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+.formContainer input[type='text']::placeholder {
+  color: #999;
+}
+
 .appContainer {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  font-family: 'Arial', sans-serif;
 }
 
-.header {
-  height: 10%;
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #ccc;
-}
-
+.header,
 .footerContainer {
   height: 10%;
-  background-color: #f0f0f0;
-  border-top: 1px solid #ccc;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mainContainer {
@@ -23,9 +73,9 @@
 
 .dropDownContainer {
   width: 20%;
-  background-color: #e6e6e6;
+  background-color: #ffffff;
   padding: 10px;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #ddd;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -34,18 +84,50 @@
 .dataContainer {
   flex: 1;
   padding: 20px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table button {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+table button:last-child {
+  margin-right: 0;
+}
+
+table button:hover {
+  background-color: #45a049;
 }
 
 th,
 td {
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
   text-align: left;
+  background-color: #ffffff;
+}
+
+th {
+  background-color: #f0f0f0;
+  font-weight: bold;
 }
 
 .dropDown {
@@ -55,22 +137,47 @@ td {
 .dropDown button {
   width: 100%;
   padding: 10px;
-  background-color: #d9d9d9;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   text-align: left;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropDownTitle {
+  background-color: #4caf50;
+  color: white;
+}
+
+.dropDownTitle:hover {
+  background-color: #45a049;
 }
 
 .dropDown-items {
   margin-top: 10px;
+  border-radius: 4px;
 }
 
 .dropDown-items article {
   padding: 10px;
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.dropDown-items button:hover {
+  background-color: #e0e0e0;
+}
+
+.dropDown-items button {
+  background-color: #ffffff;
 }
 
 .notVisible {

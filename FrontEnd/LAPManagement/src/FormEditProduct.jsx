@@ -19,7 +19,7 @@ export function FormEditProduct({ product }) {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={(e) => e.preventDefault()} className="formContainer">
       <label>Barcode</label>
       <input
         type="text"

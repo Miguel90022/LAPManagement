@@ -75,7 +75,7 @@ export function Table({
     return '';
   }
 
-  if (tableClassName == '') getTableInfo();
+  //if (tableClassName == '') getTableInfo();
 
   return (
     <table className={tableClassName}>
@@ -100,7 +100,7 @@ export function Table({
                   handleObject(row);
                 }}
               >
-                editar
+                Editar
               </button>
               <button onClick={() => getDeleteAction(row[0])}>Eliminar</button>
             </td>

@@ -1,5 +1,6 @@
 import { DropDownItem } from './DropDownItem';
 import { useState } from 'react';
+import DropDownArrow from './assets/DropDownArrow.png';
 
 export function DropDown({
   text,
@@ -27,10 +28,10 @@ export function DropDown({
         }
       }}
     >
-      <button onClick={handleItemsDeployed}>
+      <button className="dropDownTitle" onClick={handleItemsDeployed}>
         <span>{text}</span>
         <div>
-          <img src="./assets/DropDownArrow.png" alt="DropDownArrow" />
+          <img src={DropDownArrow} alt="DropDownArrow" />
         </div>
       </button>
       <DropDownItem

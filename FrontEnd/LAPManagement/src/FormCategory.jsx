@@ -10,10 +10,10 @@ export function FormCategory() {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={(e) => e.preventDefault()} className="formContainer">
       <input
         type="text"
-        placeholder="nombre categoria"
+        placeholder="Nombre categoria"
         onChange={(e) => (newCategory.detail = e.target.value)}
       />
       <button type="submit" onClick={addCategory}>

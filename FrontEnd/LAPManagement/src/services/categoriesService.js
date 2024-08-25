@@ -4,7 +4,9 @@ class CategoriesService {
   url = 'http://localhost:3000/';
 
   static getCategories() {
-    return axios.get(`http://localhost:3000/categories`).catch((e) => {
+    return axios
+    .get(`http://localhost:3000/categories`)
+    .catch((e) => {
       console.log(e);
     });
   }
@@ -18,7 +20,9 @@ class CategoriesService {
   }
 
   static deleteCategory(id) {
-    return axios.delete(`http://localhost:3000/categories/${id}`).catch((e) => {
+    return axios
+    .delete(`http://localhost:3000/categories/${id}`)
+    .catch((e) => {
       console.log(e);
     });
   }

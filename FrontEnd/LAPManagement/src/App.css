@@ -1,31 +1,26 @@
-/* Contenedor principal */
 .appContainer {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
-/* Header */
 .header {
   height: 10%;
   background-color: #f0f0f0;
   border-bottom: 1px solid #ccc;
 }
 
-/* Footer */
 .footerContainer {
   height: 10%;
   background-color: #f0f0f0;
   border-top: 1px solid #ccc;
 }
 
-/* Contenedor principal */
 .mainContainer {
   display: flex;
   flex: 1;
 }
 
-/* Sidebar que contiene los dropdowns */
 .dropDownContainer {
   width: 20%;
   background-color: #e6e6e6;
@@ -36,7 +31,6 @@
   gap: 10px;
 }
 
-/* Tabla */
 .dataContainer {
   flex: 1;
   padding: 20px;
@@ -47,13 +41,13 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   border: 1px solid #ccc;
   text-align: left;
 }
 
-/* Estilo para el dropdown */
 .dropDown {
   width: 100%;
 }
@@ -77,4 +71,8 @@ th, td {
   padding: 10px;
   background-color: #f2f2f2;
   border: 1px solid #ccc;
+}
+
+.notVisible {
+  display: none;
 }

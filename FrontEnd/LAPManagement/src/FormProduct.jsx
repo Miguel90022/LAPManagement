@@ -1,18 +1,16 @@
-import ProductsService from "./services/productsService";
+import ProductsService from './services/productsService';
 
 export function FormProduct() {
-    
   const newProduct = {
-    barcode: "",
-    fkCategoryID: "",
-    detail: "",
-    stock: "",
-    price: "",
+    barcode: '',
+    fkCategoryID: '',
+    detail: '',
+    stock: '',
+    price: '',
   };
 
   const addProduct = () => {
-    ProductsService.addProduct(newProduct).then(() => {
-    });
+    ProductsService.addProduct(newProduct).then(() => {});
   };
 
   return (

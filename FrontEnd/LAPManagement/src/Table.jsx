@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
-import CategoriesService from "./services/categoriesService";
-import ProductsService from "./services/productsService";
+import { useEffect, useState } from 'react';
+import CategoriesService from './services/categoriesService';
+import ProductsService from './services/productsService';
 
-export function Table({ SelectedDropDown }) {
+export function Table({
+  SelectedDropDown,
+  tableClassName,
+  handleTableClassName,
+  handleObject,
+}) {
   let data = [];
   const [tableInfo, setTableInfo] = useState([]);
 
-  // [legumbres, []]
   const getAllCategories = () => {
     CategoriesService.getCategories().then((categories) => {
       data = [];
@@ -15,9 +19,7 @@ export function Table({ SelectedDropDown }) {
         data[index].push(item.PKCategoryID);
         data[index].push(item.Detail);
       });
-      //tableInfo = [Object.keys(categories.data[0]), data];
       setTableInfo([Object.keys(categories.data[0]), data]);
-      //setCategories(categories.data);
     });
   };
 
@@ -33,7 +35,6 @@ export function Table({ SelectedDropDown }) {
         data[index].push(item.Stock);
         data[index].push(item.Price);
       });
-      //tableInfo = [Object.keys(products.data[0]), data];
       setTableInfo([Object.keys(products.data[0]), data]);
     });
   };
@@ -51,14 +52,15 @@ export function Table({ SelectedDropDown }) {
   };
 
   const getDeleteAction = (id) => {
-    if (SelectedDropDown == "Categorias") {
-       deleteCategory(id);
-    }else{
-     deleteProduct(id);}
+    if (SelectedDropDown == 'Categorias') {
+      deleteCategory(id);
+    } else {
+      deleteProduct(id);
+    }
   };
 
   const getTableInfo = () => {
-    if (SelectedDropDown == "Categorias") {
+    if (SelectedDropDown == 'Categorias') {
       getAllCategories();
     } else {
       getAllProducts();
@@ -70,24 +72,13 @@ export function Table({ SelectedDropDown }) {
   }, []);
 
   if (tableInfo.length == 0) {
-    return "";
+    return '';
   }
 
-  /* const createTableData = () => {
-    return tableInfo[1].map((row) => (
-      <tr>
-        {row.map((column) => (
-          <td>
-            {column}
-          </td>
-        ))}
-        <td><button>editar</button> <button onClick={()=>deleteAction(row[0])}>Eliminar</button></td>
-      </tr>
-    ));
-  };*/
+  if (tableClassName == '') getTableInfo();
 
   return (
-    <table>
+    <table className={tableClassName}>
       <thead>
         <tr>
           {tableInfo[0].map((header) => (
@@ -103,7 +94,14 @@ export function Table({ SelectedDropDown }) {
               <td>{column}</td>
             ))}
             <td>
-              <button>editar</button>{" "}
+              <button
+                onClick={() => {
+                  handleTableClassName('notVisible');
+                  handleObject(row);
+                }}
+              >
+                editar
+              </button>
               <button onClick={() => getDeleteAction(row[0])}>Eliminar</button>
             </td>
           </tr>

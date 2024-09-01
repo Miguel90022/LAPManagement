@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+const url = 'http://localhost:3000'
+
 class ProductsService {
   static getProducts() {
     return axios
-    .get(`http://localhost:3000/products`)
+    .get(`${url}/products`)
     .catch((e) => {
       console.log(e);
     });
@@ -11,7 +13,7 @@ class ProductsService {
 
   static addProduct(product) {
     return axios
-    .post(`http://localhost:3000/products`, product)
+    .post(`${url}/products`, product)
     .catch((e) => {
       console.log(e);
     });
@@ -19,7 +21,7 @@ class ProductsService {
 
   static deleteProduct(id) {
     return axios
-    .delete(`http://localhost:3000/products/${id}`)
+    .delete(`${url}/products/${id}`)
     .catch((e) => {
       console.log(e);
     });
@@ -27,7 +29,7 @@ class ProductsService {
 
   static editProduct(id, product) {
     return axios
-      .put(`http://localhost:3000/products/${id}`, product)
+      .put(`${url}/products/${id}`, product)
       .catch((e) => {
         console.log(e);
       });

@@ -1,11 +1,12 @@
 import axios from 'axios';
 
+const url = 'http://localhost:3000'
+
 class CategoriesService {
-  url = 'http://localhost:3000/';
 
   static getCategories() {
     return axios
-    .get(`http://localhost:3000/categories`)
+    .get(`${url}/categories`)
     .catch((e) => {
       console.log(e);
     });
@@ -13,7 +14,7 @@ class CategoriesService {
 
   static addCategory(category) {
     return axios
-      .post(`http://localhost:3000/categories`, category)
+      .post(`${url}/categories`, category)
       .catch((e) => {
         console.log(e);
       });
@@ -21,7 +22,7 @@ class CategoriesService {
 
   static deleteCategory(id) {
     return axios
-    .delete(`http://localhost:3000/categories/${id}`)
+    .delete(`${url}/categories/${id}`)
     .catch((e) => {
       console.log(e);
     });
@@ -29,7 +30,7 @@ class CategoriesService {
 
   static editCategory(id, category) {
     return axios
-      .put(`http://localhost:3000/categories/${id}`, category)
+      .put(`${url}/categories/${id}`, category)
       .catch((e) => {
         console.log(e);
       });

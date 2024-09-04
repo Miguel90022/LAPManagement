@@ -14,7 +14,7 @@ services:
       - "3000:3000"
     environment:
       - DATABASE_USER=sa
-      - DATABASE_PASSWORD=GorditoSpider123
+      - DATABASE_PASSWORD=DockerSQLServer123
       - DATABASE_SERVER=mssql
       - DATABASE=LAPManagement
     depends_on:
@@ -24,7 +24,7 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     restart: always
     environment:
-      SA_PASSWORD: "GorditoSpider123"
+      SA_PASSWORD: "DockerSQLServer123"
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"

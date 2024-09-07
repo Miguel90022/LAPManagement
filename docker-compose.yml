@@ -1,17 +1,38 @@
 services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
+    environment:
+      SA_PASSWORD: 'DockerSQLServer123'
+      ACCEPT_EULA: 'Y'
+    ports:
+      - '1453:1433'
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P DockerSQLServer123 -Q 'SELECT 1'",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 6
+    volumes:
+      - sql_server_db:/var/opt/mssql
+
   frontend:
     build:
       context: ./FrontEnd/LAPManagement
     ports:
-      - "5173:5173"
+      - '5173:5173'
     depends_on:
       - backend
 
   backend:
+    restart: always
     build:
       context: ./BackEnd
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - DATABASE_USER=sa
       - DATABASE_PASSWORD=DockerSQLServer123
@@ -19,16 +40,6 @@ services:
       - DATABASE=LAPManagement
     depends_on:
       - mssql
-  
-  mssql:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    restart: always
-    environment:
-      SA_PASSWORD: "DockerSQLServer123"
-      ACCEPT_EULA: "Y"
-    ports:
-      - "1453:1433"
-    volumes:
-      - sql_server_db:/sqlserver/data
+
 volumes:
   sql_server_db: {}

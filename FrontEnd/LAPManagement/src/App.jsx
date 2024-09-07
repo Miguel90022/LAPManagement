@@ -34,7 +34,7 @@ export function App() {
       <div className="appContainer">
         <div className="header">
           <div className="icon">
-             <img src="https://images.vexels.com/media/users/3/319215/isolated/preview/2c3e81bdefe1cf69a13a6f3914aeb5ac-imagen-plana-de-cabeza-de-capibara-naranja-aislada.png" alt="" />
+             <img src="https://images.vexels.com/media/users/3/319215/isolated/preview/2c3e81bdefe1cf69a13a6f3914aeb5ac-imagen-plana-de-cabeza-de-capibara-naranja-aislada.png" alt="LAPManagementLogo" />
           </div>
           <div className="title">LAP Management</div>
         </div>

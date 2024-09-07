@@ -185,8 +185,8 @@ th {
 }
 
 .header {
-  background-color: #f4f4f4; /* Fondo gris claro para un look limpio */
-  color: #333; /* Color de texto oscuro pero suave */
+  background-color: #f4f4f4;
+  color: #333;
   font-size: 1.8rem;
   font-weight: 500;
   padding: 5px 40px;
@@ -200,8 +200,8 @@ th {
 .header .title {
   font-size: 1.4rem;
   font-weight: 500;
-  color: #555; /* Un tono gris más suave */
-  letter-spacing: 0.05em; /* Espaciado sutil */
+  color: #555;
+  letter-spacing: 0.05em;
 }
 
 .header .icon img {
@@ -209,5 +209,3 @@ th {
   height: 80px;
   opacity: 0.4;
 }
-
-

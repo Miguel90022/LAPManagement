@@ -29,7 +29,6 @@ const Product = sequelize.define('Product', {
   timestamps: false,
 });
 
-// Relación con Category
 Product.belongsTo(Category, { foreignKey: 'FKCategoryID' });
 
 module.exports = Product;

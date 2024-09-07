@@ -5,7 +5,7 @@ class CategoriesController {
     try {
       const categories = await categoryDB.getAllCategories();
       if (categories.length > 0) {
-        response.status(200).json(categories);  // Enviar datos si existen categorías
+        response.status(200).json(categories);  
       } else {
         response.status(404).send("No se encontraron categorías.");
       }
@@ -20,7 +20,7 @@ class CategoriesController {
       const { id } = request.params;
       const category = await categoryDB.getCategory(id);
       if (category) {
-        response.status(200).json(category);  // Responder con la categoría si existe
+        response.status(200).json(category);  
       } else {
         response.status(404).send("Categoría no encontrada");
       }
@@ -34,7 +34,7 @@ class CategoriesController {
     try {
       const { detail } = request.body;
       const newCategory = await categoryDB.addCategory(detail);
-      response.status(201).json(newCategory);  // Responder con el nuevo objeto creado
+      response.status(201).json(newCategory);  
     } catch (err) {
       console.error(`Error al ejecutar la consulta ${err}`);
       response.status(500).send('Error en el servidor');
@@ -46,7 +46,7 @@ class CategoriesController {
       const { id } = request.params;
       const { detail } = request.body;
       const updatedCategory = await categoryDB.editCategory(id, detail);
-      if (updatedCategory[0] > 0) {  // Verificar si se actualizó alguna fila
+      if (updatedCategory[0] > 0) {  
         response.status(200).send('Categoría actualizada con éxito');
       } else {
         response.status(404).send('Categoría no encontrada');
@@ -61,7 +61,7 @@ class CategoriesController {
     try {
       const { id } = request.params;
       const deletedCategory = await categoryDB.deleteCategory(id);
-      if (deletedCategory > 0) {  // Verificar si se eliminó alguna fila
+      if (deletedCategory > 0) {  
         response.status(200).send('Categoría eliminada con éxito');
       } else {
         response.status(404).send('Categoría no encontrada');

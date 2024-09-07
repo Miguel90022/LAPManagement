@@ -1,56 +1,77 @@
 const productDB = require('./../databaseConnectionSqlServer/productDB');
 
-class productsController {
+class ProductsController {
 
-    static getAllProducts(request, response) {
-        productDB.getAllProducts((err, results) => {
-          if (err) {
-            console.error(`Error al ejecutar la consulta ${err}`);
-            response.status(500).send('Error en el servidor');
-          } else response.status(200).send(results);
-        });
+  static async getAllProducts(request, response) {
+    try {
+      const products = await productDB.getAllProducts();
+      if (products.length > 0) {
+        response.status(200).json(products);  // Enviar la lista de productos si existen
+      } else {
+        response.status(404).send("No se encontraron productos.");
       }
+    } catch (err) {
+      console.error(`Error al ejecutar la consulta ${err}`);
+      response.status(500).send("Error en el servidor");
+    }
+  }
 
-      static getProduct(request, response) {
-        const { id } = request.params;
-        productDB.getProduct(id, (err, results) => {
-          if (err) {
-            console.error(`Error al ejecutar la consulta ${err}`);
-            response.status(500).send('Error en el servidor');
-          } else response.status(200).send(results);
-        });
+  static async getProduct(request, response) {
+    try {
+      const { id } = request.params;
+      const product = await productDB.getProduct(id);
+      if (product) {
+        response.status(200).json(product);  // Responder con el producto si existe
+      } else {
+        response.status(404).send("Producto no encontrado");
       }
+    } catch (err) {
+      console.error(`Error al ejecutar la consulta ${err}`);
+      response.status(500).send("Error en el servidor");
+    }
+  }
 
-      static addProduct(request, response) {
-        const { barcode, fkCategoryID, detail, stock, price } = request.body;
-        productDB.addProduct(barcode, fkCategoryID, detail, stock, price, (err, results) => {
-          if (err) {
-            console.error(`Error al ejecutar la consulta ${err}`);
-            response.status(500).send('Error en el servidor');
-          } else response.status(200).send(results);
-        });
-      }
+  static async addProduct(request, response) {
+    try {
+      const { barcode, fkCategoryID, detail, stock, price } = request.body;
+      const newProduct = await productDB.addProduct(barcode, fkCategoryID, detail, stock, price);
+      response.status(201).json(newProduct);  // Responder con el producto recién creado
+    } catch (err) {
+      console.error(`Error al ejecutar la consulta ${err}`);
+      response.status(500).send("Error en el servidor");
+    }
+  }
 
-      static editProduct(request, response) {
-        const { id } = request.params;
-        const { barcode, fkCategoryID, detail, stock, price } = request.body;
-        productDB.editProduct(id, barcode, fkCategoryID, detail, stock, price, (err, results) => {
-          if (err) {
-            console.error(`Error al ejecutar la consulta ${err}`);
-            response.status(500).send('Error en el servidor');
-          } else response.status(200).send(results);
-        });
+  static async editProduct(request, response) {
+    try {
+      const { id } = request.params;
+      const { barcode, fkCategoryID, detail, stock, price } = request.body;
+      const updatedProduct = await productDB.editProduct(id, barcode, fkCategoryID, detail, stock, price);
+      if (updatedProduct[0] > 0) {  // Verificar si se actualizó alguna fila
+        response.status(200).send('Producto actualizado con éxito');
+      } else {
+        response.status(404).send('Producto no encontrado');
       }
+    } catch (err) {
+      console.error(`Error al ejecutar la consulta ${err}`);
+      response.status(500).send("Error en el servidor");
+    }
+  }
 
-      static deleteProduct(request, response) {
-        const { id } = request.params;
-        productDB.deleteProduct(id, (err, results) => {
-          if (err) {
-            console.error(`Error al ejecutar la consulta ${err}`);
-            response.status(500).send('Error en el servidor');
-          } else response.status(200).send(results);
-        });
+  static async deleteProduct(request, response) {
+    try {
+      const { id } = request.params;
+      const deletedProduct = await productDB.deleteProduct(id);
+      if (deletedProduct > 0) {  // Verificar si se eliminó alguna fila
+        response.status(200).send('Producto eliminado con éxito');
+      } else {
+        response.status(404).send('Producto no encontrado');
       }
+    } catch (err) {
+      console.error(`Error al ejecutar la consulta ${err}`);
+      response.status(500).send("Error en el servidor");
+    }
+  }
 }
 
-module.exports = productsController;
+module.exports = ProductsController;

@@ -183,3 +183,31 @@ th {
 .notVisible {
   display: none;
 }
+
+.header {
+  background-color: #f4f4f4; /* Fondo gris claro para un look limpio */
+  color: #333; /* Color de texto oscuro pero suave */
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding: 5px 40px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header .title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #555; /* Un tono gris más suave */
+  letter-spacing: 0.05em; /* Espaciado sutil */
+}
+
+.header .icon img {
+  width: 80px;
+  height: 80px;
+  opacity: 0.4;
+}
+
+

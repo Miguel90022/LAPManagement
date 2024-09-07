@@ -1,58 +1,43 @@
-const sqlServer = require('./connection');
+const Category = require('../models/category');
 
 class categoryDB {
-  static async getAllCategories(callback) {
+  static async getAllCategories() {
     try {
-      const request = new sqlServer.Request();
-      const result = await request.query('SELECT * FROM Category');
-      callback(null, result.recordset);
+      return await Category.findAll();
     } catch (err) {
-      callback(err, null);
+      throw err;
     }
   }
 
-  static async getCategory(id, callback) {
+  static async getCategory(id) {
     try {
-      const request = new sqlServer.Request();
-      request.input('id', sqlServer.Int, id);
-      const result = await request.query('SELECT * FROM Category WHERE PKCategoryID = @id');
-      callback(null, result.recordset[0]);
+      return await Category.findByPk(id);
     } catch (err) {
-      callback(err, null);
+      throw err;
     }
   }
 
-  static async addCategory(detail, callback) {
+  static async addCategory(detail) {
     try {
-      const request = new sqlServer.Request();
-      request.input('detail', sqlServer.VarChar, detail);
-      const result = await request.query('INSERT INTO Category (Detail) VALUES (@Detail)');
-      callback(null, result);
+      return await Category.create({ Detail: detail });
     } catch (err) {
-      callback(err, null);
+      throw err;
     }
   }
 
-  static async editCategory(id, detail, callback) {
+  static async editCategory(id, detail) {
     try {
-      const request = new sqlServer.Request();
-      request.input('id', sqlServer.Int, id);
-      request.input('detail', sqlServer.VarChar, detail);
-      const result = await request.query('UPDATE Category SET Detail = @detail WHERE PKCategoryID = @id');
-      callback(null, result);
-    } catch(err) {
-      callback(err, null);
+      return await Category.update({ Detail: detail }, { where: { PKCategoryID: id } });
+    } catch (err) {
+      throw err;
     }
   }
 
-  static async deleteCategory(id, callback) {
+  static async deleteCategory(id) {
     try {
-      const request = new sqlServer.Request();
-      request.input('id', sqlServer.Int, id);
-      const result = await request.query('DELETE FROM Category WHERE PKCategoryID = @id');
-      callback(null, result);
+      return await Category.destroy({ where: { PKCategoryID: id } });
     } catch (err) {
-      callback(err, null);
+      throw err;
     }
   }
 }

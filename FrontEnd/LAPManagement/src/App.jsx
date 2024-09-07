@@ -1,16 +1,16 @@
-import './App.css';
-import { DropDown } from './DropDown';
-import { Table } from './Table';
-import { useState } from 'react';
-import { FormProduct } from './FormProduct';
-import { FormCategory } from './FormCategory';
-import { FormEditCategory } from './FormEditCategory';
-import { FormEditProduct } from './FormEditProduct';
+import "./App.css";
+import { DropDown } from "./DropDown";
+import { Table } from "./Table";
+import { useState } from "react";
+import { FormProduct } from "./FormProduct";
+import { FormCategory } from "./FormCategory";
+import { FormEditCategory } from "./FormEditCategory";
+import { FormEditProduct } from "./FormEditProduct";
 
 export function App() {
-  const [SelectedDropDown, setSelectedDropDown] = useState('');
-  const [SelectedOption, setSelectedOption] = useState('');
-  const [TableClassName, setTableClassName] = useState('');
+  const [SelectedDropDown, setSelectedDropDown] = useState("");
+  const [SelectedOption, setSelectedOption] = useState("");
+  const [TableClassName, setTableClassName] = useState("");
   const [Object, setObject] = useState([]);
 
   const handleSelectedDropDown = (value) => {
@@ -32,30 +32,35 @@ export function App() {
   return (
     <>
       <div className="appContainer">
-        <div className="header"></div>
+        <div className="header">
+          <div className="icon">
+             <img src="https://images.vexels.com/media/users/3/319215/isolated/preview/2c3e81bdefe1cf69a13a6f3914aeb5ac-imagen-plana-de-cabeza-de-capibara-naranja-aislada.png" alt="" />
+          </div>
+          <div className="title">LAP Management</div>
+        </div>
         <div className="mainContainer">
           <aside className="dropDownContainer">
             <DropDown
-              text={'Categorias'}
+              text={"Categorias"}
               handleSelectedDropDown={handleSelectedDropDown}
               handleSelectedOption={handleSelectedOption}
               handleTableClassName={handleTableClassName}
             />
             <DropDown
-              text={'Productos'}
+              text={"Productos"}
               handleSelectedDropDown={handleSelectedDropDown}
               handleSelectedOption={handleSelectedOption}
               handleTableClassName={handleTableClassName}
             />
           </aside>
           <div className="dataContainer">
-            {SelectedOption == 'Agregar' && SelectedDropDown == 'Productos' && (
+            {SelectedOption == "Agregar" && SelectedDropDown == "Productos" && (
               <FormProduct />
             )}
-            {SelectedOption == 'Agregar' &&
-              SelectedDropDown == 'Categorias' && <FormCategory />}
-            {SelectedOption == 'Listar / Eliminar / Editar' &&
-              SelectedDropDown == 'Productos' && (
+            {SelectedOption == "Agregar" &&
+              SelectedDropDown == "Categorias" && <FormCategory />}
+            {SelectedOption == "Listar / Eliminar / Editar" &&
+              SelectedDropDown == "Productos" && (
                 <Table
                   SelectedDropDown={SelectedDropDown}
                   tableClassName={TableClassName}
@@ -63,13 +68,13 @@ export function App() {
                   handleObject={handleObject}
                 />
               )}
-            {SelectedOption == 'Listar / Eliminar / Editar' &&
-              SelectedDropDown == 'Productos' &&
-              TableClassName == 'notVisible' && (
+            {SelectedOption == "Listar / Eliminar / Editar" &&
+              SelectedDropDown == "Productos" &&
+              TableClassName == "notVisible" && (
                 <FormEditProduct product={Object} />
               )}
-            {SelectedOption == 'Listar / Eliminar / Editar' &&
-              SelectedDropDown == 'Categorias' && (
+            {SelectedOption == "Listar / Eliminar / Editar" &&
+              SelectedDropDown == "Categorias" && (
                 <Table
                   SelectedDropDown={SelectedDropDown}
                   tableClassName={TableClassName}
@@ -77,9 +82,9 @@ export function App() {
                   handleObject={handleObject}
                 />
               )}
-            {SelectedOption == 'Listar / Eliminar / Editar' &&
-              SelectedDropDown == 'Categorias' &&
-              TableClassName == 'notVisible' && (
+            {SelectedOption == "Listar / Eliminar / Editar" &&
+              SelectedDropDown == "Categorias" &&
+              TableClassName == "notVisible" && (
                 <FormEditCategory category={Object} />
               )}
           </div>

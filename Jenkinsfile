@@ -13,8 +13,8 @@ pipeline {
     stage('Run Jest Tests') {
       steps {
         echo 'Running jests tests...'
-        bat 'npm run test ./BackEnd'
-        bat 'npm run test ./FrontEnd/LAPManagement'
+        bat 'npm --prefix ./BackEnd run test'
+        bat 'npm --prefix ./FrontEnd/LAPManagement run test'
       }
     }
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import "./App.css";
 import { DropDown } from "./DropDown";
 import { Table } from "./Table";

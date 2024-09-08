@@ -1,3 +1,4 @@
+import React from 'react';
 import ProductsService from './services/productsService';
 
 export function FormProduct() {

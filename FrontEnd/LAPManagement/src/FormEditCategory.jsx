@@ -1,3 +1,4 @@
+import React from 'react';
 import CategoriesService from './services/categoriesService';
 
 export function FormEditCategory({ category }) {
